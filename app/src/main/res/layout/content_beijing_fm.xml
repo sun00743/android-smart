@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="1">
+
+    <android.support.v4.view.ViewPager
+        android:layout_width="wrap_content"
+        android:layout_height="240dp"
+        android:id="@+id/newsImage" />
+
+    <LinearLayout
+        android:id="@+id/alph"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:background="@color/md_grey_400"
+        android:layout_gravity="center_horizontal"
+        android:layout_alignBottom="@+id/newsImage"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <TextView
+            android:id="@+id/bj_viewText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_gravity="center"
+            android:layout_weight="1.68"
+            android:textColor="@color/color_white"
+            android:textSize="15dp"/>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_gravity="center_vertical"
+            android:id="@+id/bj_pointGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_below="@+id/newsImage">
+
+
+        <RelativeLayout
+            android:id="@+id/newsClick"
+            android:clickable="true"
+            android:background="@drawable/lay_newsclick_bg"
+            android:layout_width="162dp"
+            android:layout_height="134dp"
+            android:layout_row="0"
+            android:layout_column="0">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="快讯"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="10dp"
+                android:id="@+id/textView9" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="10sp"
+                android:text="巴拉巴拉巴拉巴拉"
+                android:id="@+id/textView8"
+                android:layout_alignBottom="@+id/textView9"
+                android:layout_toRightOf="@+id/textView9"
+                android:layout_toEndOf="@+id/textView9"
+                android:layout_marginLeft="5dp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageView2"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@+id/textView9"
+                android:layout_marginTop="10dp"/>
+
+        </RelativeLayout>
+    </GridLayout>
+
+
+</RelativeLayout>

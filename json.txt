@@ -1,0 +1,14 @@
+{
+    "data":[
+        {
+            "children":[
+                {
+                    "id": 1007,
+                    "title": "北京",
+                    "type": 1,
+                    "url": "1007/list_1.json"
+                }
+            ]
+        }
+    ]
+}

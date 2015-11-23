@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.administrator.smartbj.MainActivity"
+    tools:showIn="@layout/activity_main">
+
+    <!--<com.example.administrator.smartbj.ui.tabstrip.PagerSlidingTabStrip-->
+        <!--android:id="@+id/tabStrip_main"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="40dip"-->
+        <!--android:background="@color/color_yellow"-->
+        <!--app:pstsShouldExpand="true"-->
+        <!--app:pstsIndicatorColor="@color/color_white"-->
+        <!--app:pstsDividerColor="@color/color_yellow"-->
+        <!--app:pstsIndicatorHeight="2dp"-->
+        <!--app:pstsTabPaddingLeftRight="12dp"-->
+        <!--app:pstsUnderlineColor="@color/material_yellow"-->
+        <!--app:pstsUnderlineHeight="2dp"-->
+        <!--app:selectedTabTextColor="@color/color_white"-->
+        <!--app:tabTextSize="14sp"-->
+        <!--app:mtabTextColor="@color/color_white" />-->
+
+    <!--<android.support.v4.view.ViewPager-->
+        <!--android:id="@+id/viewpager_main"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_below="@+id/tabStrip_main" />-->
+
+    <FrameLayout
+        android:id="@+id/fm_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </FrameLayout>
+
+</RelativeLayout>
+
+
