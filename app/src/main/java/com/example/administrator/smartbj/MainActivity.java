@@ -14,6 +14,7 @@ import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.example.administrator.smartbj.fragment.HomeFragment;
+import com.example.administrator.smartbj.utils.AddSildingMenu;
 import com.example.administrator.smartbj.utils.SetStatusBar;
 import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
@@ -77,8 +78,8 @@ public class MainActivity extends AppCompatActivity {
 
 //        tabStrip.setViewPager(viewPager);
 
-        addSildingMenu();
-
+        AddSildingMenu.add(MainActivity.this,toolbar);
+//        addSildingMenu();
     }
 
     private void addSildingMenu() {

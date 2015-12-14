@@ -1,5 +1,6 @@
 package com.example.administrator.smartbj.fragment;
 
+import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -30,12 +32,16 @@ import com.example.administrator.smartbj.model.DataListener;
 import com.example.administrator.smartbj.model.GetChildren;
 import com.example.administrator.smartbj.ui.PullToRefreshBase;
 import com.example.administrator.smartbj.ui.PullToRefreshScrollView;
+import com.example.administrator.smartbj.utils.DensityUtils;
 import com.example.administrator.smartbj.utils.UrlUtil;
 
 import java.util.ArrayList;
 
 
 public class BeiJingFragment extends Fragment {
+
+    private ImageView arrow_down;
+    private RelativeLayout hidelayout;
 
     private RelativeLayout quickNews;
     private PullToRefreshScrollView bj_ptRefresh;
@@ -200,8 +206,8 @@ public class BeiJingFragment extends Fragment {
                             newsPoints.getChildAt(0).setEnabled(true);
                         }
                     });
-                }else {
-                    Toast.makeText(getActivity(),"哎呀，服务器出了点小问题，无法刷新呢",Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getActivity(), "哎呀，服务器出了点小问题，无法刷新呢", Toast.LENGTH_SHORT).show();
                 }
                 //调用onRefreshComplete()来告诉控件刷新完了
                 bj_ptRefresh.onRefreshComplete();
@@ -236,6 +242,13 @@ public class BeiJingFragment extends Fragment {
         imageView4 = new ImageView(getActivity());
         LinearLayout alph = (LinearLayout) view.findViewById(R.id.alph);
         alph.getBackground().setAlpha(80);
+
+        hidelayout = (RelativeLayout) view.findViewById(R.id.hide_layout);
+        GridLayout.LayoutParams params = (GridLayout.LayoutParams) hidelayout.getLayoutParams();
+        params.height = 0;
+        hidelayout.setLayoutParams(params);
+        arrow_down = (ImageView) view.findViewById(R.id.arrow_down);
+        arrow_down.setOnClickListener(new ArrowDownListener());
     }
 
     /**
@@ -314,8 +327,9 @@ public class BeiJingFragment extends Fragment {
      * 设置右下角圆点
      */
     private void initPoints() {
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(10, 10);
-        params.rightMargin = 15;
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                DensityUtils.dp2px(getActivity(), 5), DensityUtils.dp2px(getActivity(), 5));
+        params.rightMargin = DensityUtils.dp2px(getActivity(), 5);
         for (int i = 0; i < 4; i++) {
             ImageView point = new ImageView(getActivity());
             point.setLayoutParams(params);
@@ -423,5 +437,56 @@ public class BeiJingFragment extends Fragment {
             }
             return true;
         }
+    }
+
+    /**
+     * 对控件重新测量，先测量，再获取
+     * @return
+     */
+    public int getMeasureHeight() {
+
+        int width = hidelayout.getMeasuredWidth();
+
+        int widthMeasureSpec = View.MeasureSpec.makeMeasureSpec(width, View.MeasureSpec.EXACTLY);
+        int heightMeasureSpec = View.MeasureSpec.makeMeasureSpec(1000, View.MeasureSpec.AT_MOST);
+
+        hidelayout.measure(widthMeasureSpec,heightMeasureSpec);
+
+        return hidelayout.getMeasuredHeight();
+    }
+
+    private boolean ISHIDE = true;
+    /**
+     * 向下箭头监听
+     */
+    class ArrowDownListener implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+//           hidelayout.getMeasuredHeight();//当前控件的高度，我们应该拿到他本身的高度;
+            int beginheight;
+            int endheight;
+            if(ISHIDE){
+                beginheight = 0;
+                endheight = getMeasureHeight();
+            }else {
+                beginheight = getMeasureHeight();
+                endheight = 0;
+            }
+
+            ValueAnimator animator = ValueAnimator.ofInt(beginheight,endheight);
+            final GridLayout.LayoutParams params = (GridLayout.LayoutParams) hidelayout.getLayoutParams();
+            animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                @Override
+                public void onAnimationUpdate(ValueAnimator animation) {
+                    params.height = (int) animation.getAnimatedValue();
+                    hidelayout.setLayoutParams(params);
+                }
+            });
+            animator.setDuration(500);
+            animator.start();
+
+            ISHIDE = !ISHIDE;
+        }
+
     }
 }
